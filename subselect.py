@@ -12,7 +12,9 @@ sales = graphlab.SFrame('/Users/rebeccakeable/Downloads/Week 2/home_data.gl')
 # Method 1: SFrame Logical Filter
 filtered_zip1 = sales[sales['zipcode'] == '98039'] 
 # Method 2: SFrame apply() function
-filtered_zip2 = sales[sales.apply(lambda x: x['zipcode'] > '98039')] 
+filtered_zip2 = sales[sales.apply(lambda x: x['zipcode'] > '98039')]
+# Method 3: Filter_by function
+filtered_zip_alt = sales.filter_by('98039','zipcode')
 
 # Multiple Criterion
 # ----------------------------------------------------------------------------
