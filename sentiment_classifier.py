@@ -1,4 +1,6 @@
 import graphlab
+from __future__ import division
+graphlab.canvas.set_target('ipynb')
 
 products = graphlab.SFrame('/Users/rebeccakeable/Downloads/Week 3/amazon_baby.gl')
 
@@ -26,3 +28,26 @@ train_data, test_data = products.random_split(.8, seed=0)
 selected_words_model = graphlab.logistic_classifier.create(train_data, target='sentiment', 
                                                       features=['awesome_count','great_count', 'fantastic_count'], 
                                                       validation_set=test_data)
+
+selected_words_model['coefficients'].sort('value')
+# sorts coefficients by strength of association with sentiment
+
+selected_words_model.evaluate(test_data)
+selected_words_model.show(view='Evaluation')
+# shows accuracy of model and false positives and negatives
+
+products['rating'].show(view='Categorical')
+# shows distribution of ratings
+
+minority_1 = products[products['rating'] == 1].num_rows()
+minority_2 = products[products['rating'] == 2].num_rows()
+majority_4 = products[products['rating'] == 4].num_rows()
+majority_5 = products[products['rating'] == 5].num_rows()
+
+print majority_5 + majority_4
+print minority_1 + minority_2
+print (majority_5 + majority_4) / (majority_5 + majority_4 + minority_1 + minority_2)
+# shows majority class occurrence that our model should be more accurate than 
+
+products['predicted_sentiment'] = selected_words_model.predict(products, output_type='probability')
+# predicts sentiment using model
