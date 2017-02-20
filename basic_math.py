@@ -25,6 +25,7 @@ print modulo
 test_list = [5, 3, 6, 10, 23]
 np_test_list = np.array(test_list)
 # now an array in numpy and can perform math across entire array
+sorted_list = np_test_list.sorted(reverse=True)
 
 max_list = max(test_list)
 # returns max value from test_list
