@@ -12,6 +12,7 @@ sf = graphlab.SFrame('../Downloads/people-example.csv')
 
 graphlab.canvas.set_target('ipynb')
 
+# --------- GraphLab -------------------------------
 sf['age'].show(view='Categorical')
 # Creates histogram based on age variable
 
@@ -22,6 +23,7 @@ sf.show(view='Scatter Plot', x='age', y='price') # Makes scatter plot
 
 sales.show(view='BoxWhisker Plot', x='zipcode', y='price')
 
+# ---------- matplotlib -------------------------------
 plt.plot(test_data['sqft_living'],test_data['price'],'.', # Plot Price & Sqft_living as .
         test_data['sqft_living'],sqft_model.predict(test_data),'-') # Plot sqft_living and prediction from model as -
 plt.fill_between(test_data['sqft_living', test_data['price'],0,color='green') # colors in under line 
